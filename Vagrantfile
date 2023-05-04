@@ -8,7 +8,7 @@ MANAGED_IP_START = 20
 Vagrant.configure("2") do |config|
   
   config.vm.box = "centos/8"
-  config.vbguest.auto_update = false
+  config.vbguest.auto_update = true
   config.vm.box_check_update = false
   config.ssh.insert_key = false
   config.vm.synced_folder "./scenarios", "/vagrant_data"

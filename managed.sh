@@ -11,12 +11,6 @@ dnf install -y python39 bind-utils libX11
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 systemctl restart sshd
 
-PASS=$(echo "centos" | openssl passwd -1 -stdin)
-useradd -p "$PASS" ansible
-cat <<EOF > /etc/sudoers.d/student
-ansible ALL=NOPASSWD: ALL
-EOF
-
 PASS=$(echo "ansible" | openssl passwd -1 -stdin)
 useradd -p "$PASS" ansible
 cat <<EOF > /etc/sudoers.d/ansible

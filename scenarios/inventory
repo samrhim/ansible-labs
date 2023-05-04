@@ -1,0 +1,11 @@
+[all:vars]
+ansible_user=ansible
+ansible_ssh_pass=ansible
+ansible_port=22
+
+[servers]
+node01 ansible_host=192.168.30.20
+node02 ansible_host=192.168.30.21
+
+[control]
+ansible ansible_host=192.168.30.10
