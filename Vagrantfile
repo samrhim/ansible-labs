@@ -5,10 +5,6 @@ NUM_MANAGED_NODE = 2
 IP_NW = "192.168.30."
 MANAGED_IP_START = 20
 
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility).
-
 Vagrant.configure("2") do |config|
   
   config.vm.box = "centos/8"
@@ -23,11 +19,10 @@ Vagrant.configure("2") do |config|
 	    control.vm.network :private_network, ip: "192.168.30.10"
 	    control.vm.provision "shell", path: "control.sh"
       control.vm.provider "virtualbox" do |vb|
-          vb.name = "control"
-          vb.memory = "2048"
+        vb.name = "control"
+        vb.memory = "2048"
       end
 	  end
- 
 
   # Provision ansible managed Nodes
   
