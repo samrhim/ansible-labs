@@ -8,9 +8,10 @@ MANAGED_IP_START = 20
 Vagrant.configure("2") do |config|
   
   config.vm.box = "centos/8"
+  config.vbguest.auto_update = false
   config.vm.box_check_update = false
   config.ssh.insert_key = false
-# config.vm.synced_folder "./scenarios", "/vagrant_data"
+  config.vm.synced_folder "./scenarios", "/vagrant_data"
 
   # Provision ansible control Node
     
@@ -27,12 +28,12 @@ Vagrant.configure("2") do |config|
   # Provision ansible managed Nodes
   
   (1..NUM_MANAGED_NODE).each do |i|  
-	  config.vm.define "ansible0#{i}" do |node|
-	    node.vm.hostname = "ansible0#{i}.clevory.local"
+	  config.vm.define "node0#{i}" do |node|
+	    node.vm.hostname = "node0#{i}.clevory.local"
       node.vm.network :private_network, ip: IP_NW + "#{MANAGED_IP_START + i}"
 	    node.vm.provision "shell", path: "managed.sh"
       node.vm.provider "virtualbox" do |vb|
-        vb.name = "ansible0#{i}"
+        vb.name = "node0#{i}"
         vb.memory = "2048"
       end                
     end
