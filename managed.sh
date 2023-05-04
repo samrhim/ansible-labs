@@ -11,7 +11,7 @@ dnf install -y python39 bind-utils
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 systemctl restart sshd
 
-PASS=$(echo "ubuntu" | openssl passwd -1 -stdin)
+PASS=$(echo "centos" | openssl passwd -1 -stdin)
 useradd -p "$PASS" student
 cat <<EOF > /etc/sudoers.d/student
 student ALL=NOPASSWD: ALL

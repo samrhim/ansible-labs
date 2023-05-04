@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "centos/8"
   config.vm.box_check_update = false
   config.ssh.insert_key = false
-  config.vm.synced_folder "./scenario", "/vagrant_data"
+# config.vm.synced_folder "./scenarios", "/vagrant_data"
 
   # Provision ansible control Node
     
