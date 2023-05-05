@@ -3,21 +3,21 @@
 
 NUM_MANAGED_NODE = 2
 IP_NW = "192.168.30."
-MANAGED_IP_START = 20
+MANAGED_IP_START = 200
 
 Vagrant.configure("2") do |config|
   
   config.vm.box = "centos/8"
-  config.vbguest.auto_update = true
+  config.vbguest.auto_update = false
   config.vm.box_check_update = false
   config.ssh.insert_key = false
-  config.vm.synced_folder "./scenarios", "/vagrant_data"
+# config.vm.synced_folder "./scenarios", "/vagrant_data"
 
-  # Provision ansible control Node
+# Provision ansible control Node
     
     config.vm.define "control" do |control|
       control.vm.hostname = "control.clevory.local"
-	    control.vm.network :private_network, ip: "192.168.30.10"
+	    control.vm.network :private_network, ip: "192.168.30.200"
 	    control.vm.provision "shell", path: "control.sh"
       control.vm.provider "virtualbox" do |vb|
         vb.name = "control"
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
       end
 	  end
 
-  # Provision ansible managed Nodes
+# Provision ansible managed Nodes
   
   (1..NUM_MANAGED_NODE).each do |i|  
 	  config.vm.define "node0#{i}" do |node|
