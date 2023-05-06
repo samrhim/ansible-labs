@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
 	    node.vm.provision "shell", path: "managed.sh"
       node.vm.provider "virtualbox" do |vb|
         vb.name = "node0#{i}"
-        vb.memory = "2048"
+        vb.memory = "1024"
       end                
     end
   end
